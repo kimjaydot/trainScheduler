@@ -70,30 +70,30 @@
 
     <form id ="addTrainForm">
     <div class="form-group row">
-    <label for="example-text-input" class="col-2 col-form-label">Train Name</label>
+    <label for="trainName-input" class="col-2 col-form-label">Train Name</label>
     <div class="col-10">
-      <input class="form-control" type="text"  id="example-text-input">
+      <input class="form-control" type="text"  id="trainName-input">
     </div>
   </div>
 
    <div class="form-group row">
     <label for="destination-input" class="col-2 col-form-label">Destination</label>
     <div class="col-10">
-      <input class="form-control" type="text" id="example-text-input">
+      <input class="form-control" type="text" id="destination-input">
     </div>
   </div>
 
   <div class="form-group row">
     <label for="first-train-input" class="col-2 col-form-label">First Train Time (HH:mm - military time)</label>
     <div class="col-10">
-      <input class="form-control" type="time" id="example-time-input">
+      <input class="form-control" type="time" id="firstTrain-input">
     </div>
   </div>
 
   <div class="form-group row">
     <label for="frequency-input" class="col-2 col-form-label">Frequency (min)</label>
     <div class="col-10">
-      <input class="form-control" type="time"  id="example-time-input">
+      <input class="form-control" type="time"  id="frequency-input">
     </div>
   </div>  
   <button type="submit" class="btn btn-default" id="submitBtn">Submit</button>
@@ -106,79 +106,15 @@
 
 
       </div>
+<!-- Firebase  JavaScript Link -->
+ <script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
 
+<!-- Moment JavaScript Link -->
+  <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
 
-       <script>
+<!-- JavaScript/FireBase -->
+  <script src ="app.js"></script>
+
       
-     // Initialize Firebase
-    var config = {
-      apiKey: "AIzaSyDO3QYVamkSNiwbfPF0FFbymlgenzUxItA",
-      authDomain: "employeedata-582c8.firebaseapp.com",
-      databaseURL: "https://employeedata-582c8.firebaseio.com",
-      projectId: "employeedata-582c8",
-      storageBucket: "employeedata-582c8.appspot.com",
-      messagingSenderId: "227813157597"
-    };
-
-    firebase.initializeApp(config);
-
-     var database = firebase.database();
-      // Initial Values
-      var name = "";
-      var role = "";
-      var startDate = "";
-      var monthlyRate = "";
-
-        // Capture Button Click
-      $("#submit").on("click", function(event) {
-        event.preventDefault();
-        // Grabbed values from text boxes
-        name = $("#name").val().trim();
-        role = $("#role").val().trim();
-        startDate = $("#start-date").val().trim();
-        rate = $("#rate").val().trim();
-        // Code for handling the push
-        
-        database.ref().push({
-          name: name,
-          role: role,
-          startDate: startDate,
-          rate: rate,
-          dateAdded: firebase.database.ServerValue.TIMESTAMP
-
-        });
-      });
-
-
-          // Firebase watcher + initial loader HINT: This code behaves similarly to .on("value")
-      database.ref().on("child_added", function(childSnapshot) {
-        // Log everything that's coming out of snapshot
-        console.log(childSnapshot.val().name);
-        console.log(childSnapshot.val().role);
-        console.log(childSnapshot.val().startDate);
-        console.log(childSnapshot.val().rate);
-        console.log(childSnapshot.val().dateAdded);
-      
-        // 
-        $("#employees").append("<tr><td>" + childSnapshot.val().name + "</td><td>" + childSnapshot.val().role  + "</td><td>" + childSnapshot.val().startDate + "</td><td>" + childSnapshot.val().startDate  + "</td> <td>" + childSnapshot.val().rate  + "</td><td>" + childSnapshot.val().dateAdded  + "</td></tr>"
-         );
-
-         // $("#employees").append("<tr class='employF'>"
-         // + "<td class='employName'>" + childSnapshot.val().name + "</td>" + "</tr>"
-         // );
-         
-      // Handle the errors
-      }, function(errorObject) {
-        console.log("Errors handled: " + errorObject.code);
-      });
-      dataRef.ref().orderByChild("dateAdded").limitToLast(1).on("child_added", function(snapshot) {
-        // Change the HTML to reflect
-        $("#name-display").html(snapshot.val().name);
-        $("#email-display").html(snapshot.val().email);
-        $("#age-display").html(snapshot.val().age);
-        $("#comment-display").html(snapshot.val().comment);
-      });
-
-  </script>
       </body>
   </html>
