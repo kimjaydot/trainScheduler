@@ -22,3 +22,8 @@ h1{
 	padding:5px;
 	margin:5px;
 }
+
+.btn-default{
+	background-color: #b47cde;
+	font-weight:bold;
+}
