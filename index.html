@@ -145,7 +145,7 @@
       destination = $("#destination-input").val().trim();
       firstTrainName = $("#firstTrain-input").val().trim();
       frequency = $("#frequency-input").val().trim();
-      // Code for handling the push
+      // Push information
       
       database.ref().push({
         trainName: trainName,
@@ -157,9 +157,9 @@
       });
     });
 
-          // Firebase watcher + initial loader HINT: This code behaves similarly to .on("value")
+          // Firebase watcher + initial loader 
     database.ref().on("child_added", function(childSnapshot) {
-      // Log everything that's coming out of snapshot
+      // Logs snapshot
       console.log(childSnapshot.val().trainName);
       console.log(childSnapshot.val().destination);
       console.log(childSnapshot.val().firstTrainName);
