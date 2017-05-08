@@ -3,11 +3,9 @@
       <head>
           <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
-          <link rel="stylesheet" type="text/css" href="style.css">
+          <link rel="stylesheet" type="text/css" href="assets/css/style.css">
       </head>
       <body>
-  	
-
   	 <div class="container">
   	 	<div class="jumbotron">
     			<h1>Soul Train Express</h1>
@@ -29,33 +27,9 @@
   				    </tr>
   				  </thead>
   				  <tbody class="trainSchedule">
-  				   <!--  <tr>
-  				      <td>Mark</td>
-  				      <td>Otto</td>
-  				      <td>@mdo</td>
-  				      <td>@mdo</td>
-                <td>@mdo</td>
-  				    </tr>
-  				    <tr>
-  				      <td>Jacob</td>
-  				      <td>Thornton</td>
-  				      <td>@fat</td>
-  				      <td>@mdo</td>
-                <td>@mdo</td>
-  				    </tr>
-  				    <tr>
-  				      <td>Larry</td>
-  				      <td>the Bird</td>
-  				      <td>@twitter</td>
-  				      <td>@mdo</td>
-                <td>@mdo</td>
-  				    </tr> -->
   				  </tbody>
   				</table>
     		</div>
-   		<!--  <div class="panel-body">
-      	<p>Panel content</p>
-   		 </div> -->
   	</div>
        	 </div>
       	</div>
@@ -103,111 +77,17 @@
   </div> 
        	 </div>
       	</div>
-
-
       </div>
-<!-- Firebase  JavaScript Link -->
- <script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
+  <!-- Firebase  JavaScript Link -->
+  <script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
 
- <!-- jQuery Script Link -->
-   <script src="https://code.jquery.com/jquery.js"></script>
+  <!-- jQuery Script Link -->
+  <script src="https://code.jquery.com/jquery.js"></script>
 
-<!-- Moment JavaScript Link -->
+  <!-- Moment JavaScript Link -->
   <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
 
-<!-- JavaScript/FireBase -->
-  <script>
-     
-   // Initialize Firebase
-  var config = {
-    apiKey: "AIzaSyD9stvNwuJylhixbZ6mPDlhz-VSAyjCJ3A",
-    authDomain: "soultrainexpress-10240.firebaseapp.com",
-    databaseURL: "https://soultrainexpress-10240.firebaseio.com/",
-    projectId: "soultrainexpress-10240",
-    storageBucket: "soultrainexpress-10240.appspot.com",
-    messagingSenderId: "227813157597"
-  };
-
-  firebase.initializeApp(config);
-
-   var database = firebase.database();
-    // Initial Values
-    var trainName = "";
-    var destination = "";
-    var firstTrainName = "";
-    var frequency = "";
-
-
-//test Momement Code
-
-var tFrequency = 3;
-    // Time is 3:30 AM
-    var firstTime = "03:30";
-    // First Time (pushed back 1 year to make sure it comes before current time)
-    var firstTimeConverted = moment(firstTime, "hh:mm").subtract(1, "years");
-    console.log(firstTimeConverted);
-    // Current Time
-    var currentTime = moment();
-    console.log("CURRENT TIME: " + moment(currentTime).format("hh:mm"));
-    // Difference between the times
-    var diffTime = moment().diff(moment(firstTimeConverted), "minutes");
-    console.log("DIFFERENCE IN TIME: " + diffTime);
-    // Time apart (remainder)
-    var tRemainder = diffTime % tFrequency;
-    console.log(tRemainder);
-    // Minute Until Train
-    var tMinutesTillTrain = tFrequency - tRemainder;
-    console.log("MINUTES TILL TRAIN: " + tMinutesTillTrain);
-    // Next Train
-    var nextTrain = moment().add(tMinutesTillTrain, "minutes");
-    console.log("ARRIVAL TIME: " + moment(nextTrain).format("hh:mm"));
-
-
-       // On Click Submit Button
-    $("#submit-button").on("click", function(event) {
-      event.preventDefault();
-      // Grabbed values from text boxes
-      trainName = $("#trainName-input").val().trim();
-      destination = $("#destination-input").val().trim();
-      firstTrainName = $("#firstTrain-input").val().trim();
-      frequency = $("#frequency-input").val().trim();
-      // Push information
-      
-      database.ref().push({
-        trainName: trainName,
-        destination: destination,
-        firstTrainName: firstTrainName,
-        frequency: frequency,
-        dateAdded: firebase.database.ServerValue.TIMESTAMP
-
-      });
-    });
-
-          // Firebase watcher + initial loader 
-    database.ref().on("child_added", function(childSnapshot) {
-      // Logs snapshot
-      console.log(childSnapshot.val().trainName);
-      console.log(childSnapshot.val().destination);
-      console.log(childSnapshot.val().firstTrainName);
-      console.log(childSnapshot.val().frequency);
-      console.log(childSnapshot.val().dateAdded);
-    
-      // 
-      $(".trainSchedule").append("<tr><td>" + childSnapshot.val().trainName + "</td><td>" + childSnapshot.val().destination  + "</td><td>" + childSnapshot.val().firstTrainName + "</td><td>" + childSnapshot.val().frequency  + "</td><td>" + childSnapshot.val().dateAdded  + "</td></tr>"
-       );
-  });  // }, function(errorObject) {
-  //     console.log("Errors handled: " + errorObject.code);
-  //   });
-  //   dataRef.ref().orderByChild("dateAdded").limitToLast(1).on("child_added", function(snapshot) {
-  //     // Change the HTML to reflect
-  //     $("#name-display").html(snapshot.val().name);
-  //     $("#email-display").html(snapshot.val().email);
-  //     $("#age-display").html(snapshot.val().age);
-  //     $("#comment-display").html(snapshot.val().comment);
-  //   });
-
-  </script>
-
-      
+  <!-- JavaScript/FireBase -->
+  <script src = "assets/js/app.js"></script>     
       </body>
   </html>
